@@ -47,6 +47,27 @@ Este projeto foi desenvolvido utilizando JavaScript e PHP, com o backend gerido 
 ## Estrutura do Projeto
 
 - **/pokedex-front**: Contém o código do frontend desenvolvido em React.
+```
+   // Path: pokedex-front/src/routes/home.jsx
+    // Função para buscar dados dos Pokémon
+    const fetchPokemonData = async () => {
+        setLoading(true); // Inicia o carregamento
+        try {
+            const response = await axios.post('http://localhost:9501/');
+            setPokemonData(response.data.pokemon || []);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        } finally {
+            setLoading(false); // Termina o carregamento
+        }
+    };
+
+```
 - **/pokedex-back**: Contém o código do backend desenvolvido com HyperF em PHP.
+```
+  // composer require danrovito/pokephp
+ // Api para a consulta de pokemons
+ $api = new PokeApi();
+```
 - **Dockerfile**: Define como os contêineres Docker são configurados e executados.
 - **docker-compose.yml**: Configura os serviços necessários para a aplicação, como o frontend e o backend.
